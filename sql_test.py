@@ -15,7 +15,7 @@ def insert_record():
         number = request.json['number']
         cursor.execute('insert into tasksql.mysqltable values (%s, %s)',(name, number))
         mydb.commit()
-        return jsonify(str('successfully inserted !!'))
+        return jsonify(str('successfully inserted !'))
     
 if __name__ == '__main__':
     app.run()
