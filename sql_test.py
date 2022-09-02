@@ -25,7 +25,7 @@ def update():
         mydb.commit()
         return jsonify(str('updated successfully'))
 
-@app.route('/fetchall',methods = ['POST'])
+@app.route('/fetchall',methods = ['POST','GET'])
 def fetch_data():
     cursor.execute("select * from tasksql.mysqltable")
     l = []
