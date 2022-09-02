@@ -24,6 +24,23 @@ def update():
         cursor.execute("update tasksql.mysqltable set number = number + 500 where name = %s",(get_name,))
         mydb.commit()
         return jsonify(str('updated successfully'))
-            
+
+@app.route('/fetchall',methods = ['POST'])
+def fetch_data():
+    cursor.execute("select * from tasksql.mysqltable")
+    l = []
+    for i in cursor.fetchall():
+        l.append(i)
+    return jsonify(str(l))
+
+@app.route('/delete',methods = ['POST'])
+def delete():
+    if request.method == 'POST':
+        del_name = request.json['del_name']
+        cursor.execute("delete from tasksql.mysqltable where name = %s",(del_name,))
+        mydb.commit()
+        return jsonify(str("Successfully deleted"))
+
+
 if __name__ == '__main__':
     app.run()
